@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Track Delivery | FreshNest Mobile Market</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .tracker-card{
+            max-width:900px;
+            margin:auto;
+            background:white;
+            padding:40px;
+            border-radius:25px;
+            box-shadow:0 15px 35px rgba(0,0,0,.08);
+        }
+
+        .tracker-input{
+            display:flex;
+            gap:15px;
+            flex-wrap:wrap;
+            margin-bottom:40px;
+        }
+
+        .tracker-input input{
+            flex:1;
+            min-width:250px;
+            padding:15px;
+            border:1px solid #ddd;
+            border-radius:10px;
+            font-size:1rem;
+        }
+
+        .tracker-input button{
+            background:#C96B4A;
+            color:white;
+            border:none;
+            padding:15px 30px;
+            border-radius:10px;
+            cursor:pointer;
+            font-size:1rem;
+        }
+
+        .tracker-input button:hover{
+            opacity:.9;
+        }
+
+        .progress-container{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            flex-wrap:wrap;
+            gap:20px;
+            margin-top:40px;
+        }
+
+        .step{
+            flex:1;
+            min-width:150px;
+            text-align:center;
+            padding:20px;
+            border-radius:20px;
+            background:#f5f5f5;
+            transition:.3s;
+        }
+
+        .step.complete{
+            background:#8BA888;
+            color:white;
+        }
+
+        .step.active{
+            background:#C96B4A;
+            color:white;
+            transform:scale(1.05);
+        }
+
+        .delivery-info{
+            margin-top:40px;
+            padding:25px;
+            background:#FAF7F2;
+            border-radius:20px;
+            display:none;
+        }
+
+        .delivery-info h3{
+            color:#5F7D5B;
+            margin-bottom:15px;
+        }
+
+        .status-badge{
+            display:inline-block;
+            background:#C96B4A;
+            color:white;
+            padding:8px 16px;
+            border-radius:30px;
+            margin-top:10px;
+        }
+
+    </style>
+
+</head>
+<script src="js/main.js"></script>
+<body>
+
+    <!-- Navigation -->
+
+    <nav>
+
+        <div class="container nav-container">
+
+            <div class="logo">
+               <img src="freshlogo.png" alt="FreshNest Logo" style="
+                    width: 20%;
+                ">
+                <h2>FreshNest Mobile Market</h2>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="subscriptions.html">Subscriptions</a></li>
+                <li><a href="tracking.html">Track</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+        </div>
+
+    </nav>
+
+    <!-- Hero -->
+
+    <section class="hero" style="min-height:65vh;">
+
+        <div class="hero-content">
+
+            <div class="floating-logo">
+                <img src="freshlogo.png" alt="FreshNest Logo" style="
+                    width: 20%;
+                ">
+            </div>
+
+            <h1>Track Your FreshNest Delivery</h1>
+
+            <p>
+                Stay updated as fresh food makes its way
+                to your neighborhood.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Tracking Section -->
+
+    <section>
+
+        <div class="container">
+
+            <div style="text-align:center; margin-bottom:50px;">
+
+                <h2>Delivery Tracking</h2>
+
+                <p>
+                    Enter your tracking number below to
+                    view the latest delivery updates.
+                </p>
+
+            </div>
+
+            <div class="tracker-card">
+
+                <div class="tracker-input">
+
+                    <input
+                        type="text"
+                        id="trackingNumber"
+                        placeholder="Enter Tracking Number">
+
+                    <button onclick="trackDelivery()">
+                        Track Delivery
+                    </button>
+
+                </div>
+
+                <div class="progress-container">
+
+                    <div class="step complete">
+                        ✓ Order Received
+                    </div>
+
+                    <div class="step complete">
+                        ✓ Packed Fresh
+                    </div>
+
+                    <div class="step active">
+                        🚚 On The Truck
+                    </div>
+
+                    <div class="step">
+                        Delivered
+                    </div>
+
+                </div>
+
+                <div class="delivery-info" id="deliveryInfo">
+
+                    <h3>Delivery Status</h3>
+
+                    <p>
+                        Your FreshNest order is currently
+                        traveling to its delivery destination.
+                    </p>
+
+                    <p>
+                        Estimated Arrival:
+                        <strong>Today by 4:00 PM</strong>
+                    </p>
+
+                    <p>
+                        Delivery Route:
+                        <strong>Houston Community Route A</strong>
+                    </p>
+
+                    <span class="status-badge">
+                        Out For Delivery
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Neighborhood Schedule -->
+
+    <section class="impact">
+
+        <div class="container">
+
+            <h2>Weekly Mobile Market Stops</h2>
+
+            <div class="impact-grid">
+
+                <div>
+                    <h3>Tuesday</h3>
+                    <p>East Houston</p>
+                </div>
+
+                <div>
+                    <h3>Wednesday</h3>
+                    <p>Third Ward</p>
+                </div>
+
+                <div>
+                    <h3>Thursday</h3>
+                    <p>Sunnyside</p>
+                </div>
+
+                <div>
+                    <h3>Friday</h3>
+                    <p>Northside</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Delivery Map -->
+
+    <section>
+
+        <div class="container">
+
+            <div style="text-align:center; margin-bottom:40px;">
+
+                <h2>Delivery Coverage Area</h2>
+
+                <p>
+                    FreshNest currently serves Houston
+                    and surrounding neighborhoods.
+                </p>
+
+            </div>
+
+            <div class="map-container">
+
+                <iframe
+                    src="https://maps.google.com/maps?q=Houston,%20Texas&t=&z=11&ie=UTF8&iwloc=&output=embed"
+                    width="100%"
+                    height="500"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy">
+                </iframe>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CTA -->
+
+    <section style="background:#E9DFC9;">
+
+        <div class="container" style="text-align:center;">
+
+            <h2>Need Help With Your Delivery?</h2>
+
+            <p style="max-width:700px; margin:20px auto;">
+
+                Our team is here to help answer questions
+                about subscriptions, delivery schedules,
+                and neighborhood market stops.
+
+            </p>
+
+            <a href="contact.html" class="btn">
+                Contact Support
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+
+    <footer>
+
+        <div class="container">
+
+            <h2>FreshNest Mobile Market</h2>
+
+            <p>
+                Healthy Food, Right Where You Are.
+            </p>
+
+            <br>
+
+            <p>
+                Improving access to affordable, nutritious food while
+                strengthening local communities through convenience,
+                education, and healthy lifestyle support.
+            </p>
+
+            <br>
+
+            <p>
+                © 2026 FreshNest Mobile Market. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+    <script>
+
+        function trackDelivery() {
+
+            const trackingNumber =
+                document.getElementById("trackingNumber").value;
+
+            if (trackingNumber.trim() === "") {
+
+                alert("Please enter a tracking number.");
+
+                return;
+            }
+
+            document.getElementById("deliveryInfo").style.display = "block";
+
+            document.getElementById("deliveryInfo")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+        }
+
+    </script>
+<script src="js/main.js"></script>
+</body>
+
+</html>
